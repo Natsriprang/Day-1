@@ -1,5 +1,7 @@
 import streamlit as st
+from dotenv import load_dotenv
 from openai import OpenAI
+load_dotenv()
 
 st.header("Welcome")
 name = st.text_input("What is your name?")
@@ -11,17 +13,11 @@ st.write(f"{len(age)}/100")
 if st.button("Submit"):
     st.write(f"Welcome to the world! {name}")
 
-user = {"name": "name", "age": int(user["age"])}
-if user["age"] < 24:
-#if statement is false, it will not show the message below
-    st.write("You were born this millenium")
-else:
-    st.write("You were born last millenium")
 
 client = OpenAI()
 
-response = client.response.create(
-    model="gpt-5-pro",
-    input="write a one-sentence bedtime story about a horse.",
+response = client.responses.create(
+    model="gpt-4o",
+    input="write a 100 word about how old the person is, depending on your view, you don't have to be polite.",
 )
-print(response.output_text)
+st.write(response.output_text)

@@ -1,3 +1,4 @@
 #things to install
 streamlit
 openai
+dotenv
