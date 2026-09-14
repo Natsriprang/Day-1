@@ -1,4 +1,6 @@
 import streamlit as st
+from openai import OpenAI
+
 st.header("Welcome")
 name = st.text_input("What is your name?")
 age = 28
@@ -16,4 +18,10 @@ if user["age"] < 24:
 else:
     st.write("You were born last millenium")
 
+client = OpenAI()
 
+response = client.response.create(
+    model="gpt-5-pro",
+    input="write a one-sentence bedtime story about a horse.",
+)
+print(response.output_text)
